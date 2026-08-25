@@ -1,0 +1,124 @@
+/* Legends Awakened — dark fantasy theme accents (layered on top of Dawn's base.css) */
+
+:root {
+  --la-gold: #c9a227;
+  --la-gold-bright: #e8c85a;
+}
+
+/* Epic, wide-tracked headings */
+h1, h2, .h1, .h2,
+.banner__heading,
+.rich-text__heading {
+  letter-spacing: 0.03em;
+}
+
+/* Gold underline flourish under section headings */
+.title-wrapper-with-link .title,
+.collection-list__title,
+.rich-text__heading,
+.title-wrapper .title {
+  position: relative;
+  padding-bottom: 1.2rem;
+}
+
+.title-wrapper-with-link .title::after,
+.collection-list__title::after,
+.rich-text__heading::after,
+.title-wrapper .title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6rem;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--la-gold), transparent);
+}
+
+.rich-text .title-wrapper-with-link .title::after,
+.rich-text__heading::after {
+  left: 50%;
+}
+
+/* Hero banner: subtle vignette + ornamental top/bottom rule */
+.banner {
+  position: relative;
+}
+
+.banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.55) 100%);
+  z-index: 1;
+}
+
+.banner__content {
+  position: relative;
+  z-index: 2;
+}
+
+.banner__box {
+  border: 1px solid rgba(var(--color-button), 0.35);
+}
+
+/* Gold-accented buttons get a slightly heavier tracking, like a seal/medallion */
+.button,
+button.button,
+a.button {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+}
+
+/* Product & collection cards: gold glow border on hover */
+.card-wrapper .card {
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.card-wrapper:hover .card {
+  box-shadow: 0 0 0 1px rgba(var(--color-button), 0.6), 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+/* Sold-out / sale badges get extra letter spacing for a "seal" feel */
+.badge {
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Announcement bar: subtle divider dots between rotating messages */
+.announcement-bar {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* Footer newsletter heading gets the gold treatment */
+.footer-block__heading {
+  color: var(--la-gold-bright);
+}
+
+/* Ornamental corner marks on the hero content box, echoing an old map / legendary item card */
+.banner__box::before,
+.banner__box::after {
+  content: '';
+  position: absolute;
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 2px solid var(--la-gold);
+  pointer-events: none;
+}
+
+.banner__box::before {
+  top: -1px;
+  left: -1px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.banner__box::after {
+  bottom: -1px;
+  right: -1px;
+  border-left: none;
+  border-top: none;
+}
