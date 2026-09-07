@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Fruit-Powered Life</title>
+<style>
+  @page {
+    size: Letter;
+    margin: 0;
+  }
+  @page :first {
+    margin: 0;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    color: #2b2620;
+    background: #fdfaf4;
+    font-size: 11.5pt;
+    line-height: 1.6;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #1f5d3a;
+    font-weight: 700;
+  }
+  .page {
+    width: 8.5in;
+    min-height: 11in;
+    padding: 0.85in 0.95in;
+    position: relative;
+    page-break-after: always;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* ---- Title page ---- */
+  .titlepage {
+    background: linear-gradient(160deg, #1f5d3a 0%, #2f7a4d 55%, #f0913a 140%);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1in;
+  }
+  .titlepage .eyebrow {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    font-size: 10pt;
+    opacity: 0.85;
+    margin-bottom: 28px;
+  }
+  .titlepage h1 {
+    color: #fff;
+    font-size: 48pt;
+    line-height: 1.08;
+    margin: 0 0 18px 0;
+    letter-spacing: -0.5px;
+  }
+  .titlepage .sub {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14pt;
+    max-width: 5.6in;
+    opacity: 0.95;
+    margin-bottom: 46px;
+  }
+  .titlepage .sub strong { color: #fff; }
+  .titlepage .names {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11pt;
+    letter-spacing: 0.04em;
+    opacity: 0.92;
+    border-top: 1px solid rgba(255,255,255,0.4);
+    padding-top: 22px;
+    max-width: 5in;
+  }
+  .titlepage .fruitrow {
+    position: absolute;
+    bottom: 0.7in;
+    font-size: 34pt;
+    opacity: 0.9;
+    letter-spacing: 0.4em;
+  }
+  .titlepage .price-badge {
+    position: absolute;
+    top: 0.7in;
+    right: 0.7in;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.55);
+    border-radius: 999px;
+    padding: 8px 20px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12pt;
+    letter-spacing: 0.08em;
+  }
+
+  /* ---- TOC ---- */
+  .toc h2 {
+    font-size: 26pt;
+    margin-top: 0;
+    border-bottom: 3px solid #f0913a;
+    padding-bottom: 14px;
+    margin-bottom: 30px;
+  }
+  .toc-list { list-style: none; padding: 0; margin: 0; }
+  .toc-list li {
+    display: flex;
+    align-items: baseline;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12.5pt;
+    padding: 10px 0;
+    border-bottom: 1px dotted #cfc6b3;
+  }
+  .toc-list .num {
+    color: #f0913a;
+    font-weight: 700;
+    width: 34px;
+    flex: none;
+  }
+  .toc-list .label { flex: 1; color: #2b2620; font-weight: 600;}
+  .toc-list .desc { color: #6b6153; font-size: 10.5pt; font-weight: 400; }
+  .toc-note {
+    margin-top: 40px;
+    background: #eef4ea;
+    border-left: 4px solid #1f5d3a;
+    padding: 16px 20px;
+    font-size: 10.5pt;
+    color: #34412f;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  /* ---- Content pages ---- */
+  .kicker {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 9.5pt;
+    color: #f0913a;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  h2.section-title {
+    font-size: 27pt;
+    margin: 0 0 6px 0;
+    color: #1f5d3a;
+  }
+  .section-tagline {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-style: italic;
+    color: #6b6153;
+    font-size: 12.5pt;
+    margin-bottom: 26px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid #f0913a22;
+  }
+  h3 {
+    font-size: 14.5pt;
+    color: #1f5d3a;
+    margin-top: 26px;
+    margin-bottom: 8px;
+  }
+  h3 .step-num {
+    display: inline-block;
+    background: #1f5d3a;
+    color: #fff;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 24px;
+    font-size: 11pt;
+    margin-right: 10px;
+  }
+  p { margin: 0 0 12px 0; text-align: left; }
+  ul, ol { margin: 0 0 14px 0; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  strong { color: #17402a; }
+  .callout {
+    background: #fff3e6;
+    border-left: 4px solid #f0913a;
+    padding: 14px 18px;
+    margin: 18px 0;
+    font-size: 10.8pt;
+    border-radius: 0 6px 6px 0;
+  }
+  .callout.green {
+    background: #eef4ea;
+    border-left-color: #1f5d3a;
+  }
+  .qa {
+    margin-bottom: 16px;
+  }
+  .qa .q {
+    font-weight: 700;
+    color: #1f5d3a;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11.5pt;
+  }
+  .checklist { list-style: none; padding-left: 0; }
+  .checklist li {
+    padding-left: 28px;
+    position: relative;
+  }
+  .checklist li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 2px;
+    width: 16px; height: 16px;
+    border: 2px solid #1f5d3a;
+    border-radius: 4px;
+  }
+  .page-footer {
+    position: absolute;
+    bottom: 0.5in;
+    left: 0.95in;
+    right: 0.95in;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 8.5pt;
+    color: #a89f8c;
+    border-top: 1px solid #e8e0d0;
+    padding-top: 8px;
+  }
+  .divider-fruit {
+    text-align: center;
+    color: #f0913a;
+    letter-spacing: 0.6em;
+    font-size: 12pt;
+    margin: 22px 0;
+  }
+  .backcover {
+    background: linear-gradient(200deg, #1f5d3a 0%, #2f7a4d 60%, #f0913a 150%);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1in;
+  }
+  .backcover h2 { color: #fff; font-size: 22pt; margin-top:0; }
+  .backcover p { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 11pt; opacity: 0.95; }
+  .backcover .disclaimer {
+    margin-top: 36px;
+    font-size: 9pt;
+    opacity: 0.85;
+    border-top: 1px solid rgba(255,255,255,0.35);
+    padding-top: 18px;
+  }
+  .three-col {
+    display: flex;
+    gap: 18px;
+    margin: 20px 0;
+  }
+  .three-col .col {
+    flex: 1;
+    background: #f4efe2;
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 10.2pt;
+  }
+  .three-col .col h4 {
+    margin: 0 0 6px 0;
+    font-size: 11.5pt;
+    color: #1f5d3a;
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="page titlepage">
+  <div class="price-badge">$20 DIGITAL GUIDE</div>
+  <div class="eyebrow">A Practical Fruitarian Guide</div>
+  <h1>The Fruit&#8209;Powered<br>Life</h1>
+  <div class="sub">Synthesizing the best lessons from <strong>Loren Lockman</strong>, <strong>Ted Carr</strong>, and <strong>Shane Sterling</strong> into one practical framework for eating, living, and thriving on a fruit-centered diet.</div>
+  <div class="names">Physiology &amp; simplicity &nbsp;·&nbsp; Real-world sustainability &nbsp;·&nbsp; Calorie discipline</div>
+  <div class="fruitrow">🍌 🍊 🥭 🍉 🍇</div>
+</div>
+
+<!-- TOC -->
+<div class="page toc">
+  <h2>Contents</h2>
+  <ul class="toc-list">
+    <li><span class="num">—</span><span class="label">Welcome</span><span class="desc">Why these three voices, together</span></li>
+    <li><span class="num">01</span><span class="label">The Physiological Foundation</span><span class="desc">The Natural Hygiene case for simplicity</span></li>
+    <li><span class="num">02</span><span class="label">The Long-Termer's Playbook</span><span class="desc">Sustainable systems over willpower</span></li>
+    <li><span class="num">03</span><span class="label">The Numbers Discipline</span><span class="desc">Why "eat enough" solves almost everything</span></li>
+    <li><span class="num">04</span><span class="label">The 30-Day Transition Framework</span><span class="desc">A week-by-week plan combining all three</span></li>
+    <li><span class="num">05</span><span class="label">Troubleshooting</span><span class="desc">Fixes for the six most common problems</span></li>
+    <li><span class="num">A</span><span class="label">Appendices</span><span class="desc">Sample day, shopping checklist, FAQ</span></li>
+  </ul>
+  <div class="toc-note">This guide is an independent educational synthesis of publicly discussed philosophies. It is not officially affiliated with, endorsed by, or reviewed by Loren Lockman, Tanglewood Wellness Center, Ted Carr, or Shane Sterling, and it is not medical advice.</div>
+</div>
+
+<!-- WELCOME -->
+<div class="page">
+  <div class="kicker">Welcome</div>
+  <h2 class="section-title">Three Voices, One Framework</h2>
+  <div class="section-tagline">Why this guide exists, and how to use it</div>
+
+  <p>Fruitarianism has three very different public faces. <strong>Loren Lockman</strong> (Tanglewood Wellness Center) brings the clinical, Natural Hygiene case for a low-fat, whole-food, fruit-based diet, built on decades of supervised fasting and detox work. <strong>Ted Carr</strong> brings the long-term practitioner's pragmatism — how to actually live this way for years without burning out, going broke, or losing your social life. <strong>Shane Sterling</strong> brings the discipline of numbers — the blunt truth that most fruitarian "failures" are really just <em>undereating</em>, and that consistency beats purity.</p>
+
+  <p>This guide pulls the strongest, most actionable ideas from each of these three approaches into one framework. It is an independent educational synthesis of publicly discussed philosophies — it is not officially affiliated with, endorsed by, or reviewed by Loren Lockman, Ted Carr, or Shane Sterling, and it is not a substitute for their own courses, coaching, or content.</p>
+
+  <div class="three-col">
+    <div class="col"><h4>Lockman</h4>Physiology, digestion, simplicity, and the Natural Hygiene lens on why fruit works.</div>
+    <div class="col"><h4>Carr</h4>Budgeting, systems, flexibility, and staying fruitarian for the long haul.</div>
+    <div class="col"><h4>Sterling</h4>Calories, tracking, and the numbers that actually determine success.</div>
+  </div>
+
+  <div class="callout">
+    <strong>Important health note:</strong> A fruit-centered diet is a significant departure from conventional nutrition advice. It can be done well or done badly. This guide is educational, not medical advice. Talk to a doctor before making major dietary changes, especially if you're pregnant, nursing, managing a medical condition, or taking medication. Watch your bloodwork (B12, vitamin D, iron, omega-3s) periodically no matter what diet you follow.
+  </div>
+  <div class="page-footer"><span>The Fruit-Powered Life</span><span>Welcome</span></div>
+</div>
+
+<!-- PART 1 -->
+<div class="page">
+  <div class="kicker">Part 01 — In the spirit of Loren Lockman</div>
+  <h2 class="section-title">The Physiological Foundation</h2>
+  <div class="section-tagline">"Simplicity heals." — the Natural Hygiene case</div>
+
+  <p>The clinical/fasting-tradition view of fruitarianism isn't really about fruit for its own sake — it's about <strong>removing what burdens digestion</strong> so the body can do its own maintenance work efficiently.</p>
+
+  <h3><span class="step-num">1</span>Low fat, not zero fat</h3>
+  <p>Digestion is fastest and most efficient when meals are low in fat. Heavy fat (oils, large amounts of nuts/avocado) slows gastric emptying and thickens the blood after meals — it's the single biggest lever most raw-food dieters get wrong. Whole fruit, eaten simply, digests in a fraction of the time of a fat-heavy meal.</p>
+
+  <h3><span class="step-num">2</span>Whole fruit over juice</h3>
+  <p>Juicing strips the fiber that slows sugar absorption and feeds a healthy gut. Eat the fruit, don't drink it — except as an occasional, deliberate choice (e.g., green juice alongside a meal, not as a replacement for whole food).</p>
+
+  <h3><span class="step-num">3</span>Keep combinations simple</h3>
+  <p>You don't need to be a food-combining purist, but big, chaotic meals (five fruits plus nuts plus dried fruit plus oil) are harder to digest than <strong>mono meals or simple 2&ndash;3 ingredient meals</strong>. When in doubt, simplify.</p>
+
+  <h3><span class="step-num">4</span>The body is self-repairing when unburdened</h3>
+  <p>Symptoms often labeled "detox" are the body reallocating energy away from processing dense, low-nutrient, high-fat foods toward cleanup and repair. Give it easy fuel and time.</p>
+
+  <h3><span class="step-num">5</span>Rest, sleep, sunlight, and movement are part of the diet</h3>
+  <p>No eating pattern compensates for chronic sleep debt, zero sunlight, or a sedentary life. Treat these as prerequisites, not extras.</p>
+
+  <h3><span class="step-num">6</span>Water-only fasting is an advanced tool, not a starting point</h3>
+  <p>It should only ever be done under qualified professional supervision (as at a facility like Tanglewood) — never self-directed, and never as a first step into this lifestyle.</p>
+
+  <div class="callout green"><strong>Takeaway:</strong> before you optimize <em>what fruit</em>, optimize <em>how simply you eat it</em>. Fewer ingredients per sitting, less added fat, more whole fruit, better sleep.</div>
+  <div class="page-footer"><span>The Fruit-Powered Life</span><span>Part 01 · Physiological Foundation</span></div>
+</div>
+
+<!-- PART 2 -->
+<div class="page">
+  <div class="kicker">Part 02 — In the spirit of Ted Carr</div>
+  <h2 class="section-title">The Long-Termer's Playbook</h2>
+  <div class="section-tagline">"Make it boring, sustainable, and cheap." — pragmatism</div>
+
+  <p>Anyone can eat this way for two weeks. The people who stay fruitarian for years operate completely differently from how they did in month one.</p>
+
+  <h3><span class="step-num">1</span>Eat to genuine hunger, not to a rulebook</h3>
+  <p>Rigid meal plans and food-combining charts are training wheels. Long-term success comes from relearning what real physical hunger feels like and trusting it — including eating more some days and less on others.</p>
+
+  <h3><span class="step-num">2</span>Budget like a grown-up</h3>
+  <p>Buy fruit in bulk and in season. Build relationships with wholesalers, farmers' markets, or "ugly produce" delivery services. Ripen fruit yourself (buy it firm and let it ripen at home) rather than paying a premium for perfectly ripe fruit. Freeze gluts of ripe bananas and mangoes for later.</p>
+
+  <h3><span class="step-num">3</span>Flexibility beats purity</h3>
+  <p>A rigid "I can never deviate" mindset is what causes most people to quit entirely after one social dinner "failure." Long-term practitioners build in slack: eat what's available when traveling, don't treat an imperfect meal as a moral failure, and get back to your normal pattern the next meal.</p>
+
+  <h3><span class="step-num">4</span>Design your environment, not just your willpower</h3>
+  <p>Keep your kitchen stocked with ripe fruit at all times so you're never one hungry moment away from convenience food. Prep fruit in advance (peeled, cut, frozen) the way other people meal-prep.</p>
+
+  <h3><span class="step-num">5</span>Handle the social layer deliberately</h3>
+  <p>Decide in advance how you'll navigate restaurants, family dinners, and travel. Eat before social events if needed, bring your own food without apology, and have a short, calm explanation ready rather than a defensive lecture.</p>
+
+  <h3><span class="step-num">6</span>Expect a real adaptation period</h3>
+  <p>Energy, digestion, and cravings typically take weeks to months to stabilize — plan for a gradual transition (see Part 04), not an overnight switch.</p>
+
+  <div class="callout green"><strong>Takeaway:</strong> treat this as infrastructure — buying habits, kitchen setup, and social scripts — not just willpower. Willpower runs out; systems don't.</div>
+  <div class="page-footer"><span>The Fruit-Powered Life</span><span>Part 02 · The Long-Termer's Playbook</span></div>
+</div>
+
+<!-- PART 3 -->
+<div class="page">
+  <div class="kicker">Part 03 — In the spirit of Shane Sterling</div>
+  <h2 class="section-title">The Numbers Discipline</h2>
+  <div class="section-tagline">"Eat enough, or none of this works." — the data-driven approach</div>
+
+  <p>The most common reason people "fail" on a fruit-based diet isn't fruit itself — it's chronic <strong>undereating</strong>. Fruit is bulky and low-density; if you eat the way you did on a mixed diet (by volume or by old habit), you will run a large calorie deficit without noticing, and you'll blame the diet for the fatigue, mood crashes, and binge cycles that follow.</p>
+
+  <h3><span class="step-num">1</span>Know your numbers, at least at first</h3>
+  <p>Track calories for a few weeks when you start (or whenever you feel low energy, lose weight unintentionally, or feel obsessive about food). Most adults doing real activity need considerably more calories from fruit than they expect — often 2,500&ndash;4,000+ kcal, which can mean 15&ndash;25+ pieces of fruit a day. This is normal on this way of eating, not a warning sign.</p>
+
+  <h3><span class="step-num">2</span>Calorie-dense fruits are your friends</h3>
+  <p>Bananas, dates, mangoes, and dried fruit (in moderation) let you hit your energy needs without eating an impractical volume of watery fruit alone. Build meals around these as a base, then add watery fruits (melon, citrus, berries) for volume, hydration, and micronutrients.</p>
+
+  <h3><span class="step-num">3</span>Weigh and measure until it's intuitive</h3>
+  <p>A kitchen scale removes guesswork in the first months. Once you can eyeball your needs accurately and your weight/energy are stable, you can drop formal tracking — but return to it any time something feels off.</p>
+
+  <h3><span class="step-num">4</span>Consistency beats intensity</h3>
+  <p>Three solid, sufficient meals a day beats grazing on small amounts that never add up to enough. Structure your day around 2&ndash;4 substantial mono or simple meals rather than constant snacking.</p>
+
+  <h3><span class="step-num">5</span>Track outcomes, not just intake</h3>
+  <p>Bodyweight trend, energy across the day, sleep quality, and mood are your feedback loop. If any of these decline for more than a couple of weeks, the fix is almost always "eat more," not "eat differently."</p>
+
+  <h3><span class="step-num">6</span>Test, don't guess, on supplementation</h3>
+  <p>Get B12 tested and supplement if needed — this is non-negotiable on any diet with little or no animal food, whatever theory you subscribe to. Track vitamin D and iron too, especially if sun exposure or menstrual status make you higher-risk.</p>
+
+  <div class="callout green"><strong>Takeaway:</strong> when in doubt, the answer is almost always "you're not eating enough." Track it, don't assume it.</div>
+  <div class="page-footer"><span>The Fruit-Powered Life</span><span>Part 03 · The Numbers Discipline</span></div>
+</div>
+
+<!-- PART 4 -->
+<div class="page">
+  <div class="kicker">Part 04 — Putting it together</div>
+  <h2 class="section-title">The 30-Day Transition Framework</h2>
+  <div class="section-tagline">Simplify digestion first, build systems second, lock in sufficient intake third</div>
+
+  <h3>Week 1 — Simplify</h3>
+  <ul>
+    <li>Cut added oils and reduce nuts/seeds to a small daily handful at most.</li>
+    <li>Replace one meal a day with a mono or 2-ingredient fruit meal.</li>
+    <li>Start a simple food + energy + mood log (doesn't need to be calories yet).</li>
+  </ul>
+
+  <h3>Week 2 — Build the system</h3>
+  <ul>
+    <li>Set up your fruit-buying routine: bulk source, ripening station, freezer stash.</li>
+    <li>Replace a second meal with fruit; keep your remaining meal familiar and comfortable.</li>
+    <li>Write your one-paragraph "social script" for explaining your diet, and practice it once.</li>
+  </ul>
+
+  <h3>Week 3 — Add the numbers</h3>
+  <ul>
+    <li>Go to all-fruit meals for the day (or as close as your context allows).</li>
+    <li>Start weighing/tracking calories for at least a few days to see where you actually land versus where you assume you land.</li>
+    <li>Anchor each meal around a calorie-dense fruit (banana, date, mango) plus a watery fruit for volume.</li>
+  </ul>
+
+  <h3>Week 4 — Stabilize and observe</h3>
+  <ul>
+    <li>Hold your new pattern for a full week.</li>
+    <li>Review your log: is bodyweight stable (unless intentionally changing), is energy even across the day, is sleep good?</li>
+    <li>Adjust total intake up before you change anything else if any of those are off.</li>
+  </ul>
+
+  <div class="callout"><strong>After 30 days</strong> you should have (a) a digestion-friendly, simplified eating pattern, (b) a repeatable buying/prep system, and (c) a working sense of your real caloric needs. From here, the diet becomes maintenance, not a project.</div>
+  <div class="page-footer"><span>The Fruit-Powered Life</span><span>Part 04 · The 30-Day Transition Framework</span></div>
+</div>
+
+<!-- PART 5 -->
+<div class="page">
+  <div class="kicker">Part 05</div>
+  <h2 class="section-title">Troubleshooting</h2>
+  <div class="section-tagline">Fast fixes for the six problems everyone hits</div>
+
+  <div class="qa"><div class="q">"I'm exhausted all the time."</div><p>Almost always insufficient calories. Add a calorie-dense fruit meal before touching anything else.</p></div>
+  <div class="qa"><div class="q">"I'm losing weight I don't want to lose."</div><p>Same root cause. Increase portion sizes and meal frequency, lean harder on bananas, dates, and dried fruit.</p></div>
+  <div class="qa"><div class="q">"My teeth feel sensitive / I'm worried about sugar and teeth."</div><p>Rinse with water after fruit meals, wait before brushing, and don't sip fruit slowly over hours — eat meals, then stop, rather than grazing all day, which is what actually drives dental issues on any high-sugar diet.</p></div>
+  <div class="qa"><div class="q">"I feel great for weeks, then crash."</div><p>Check for a slow calorie deficit that built up unnoticed, and check sleep and stress — both compound quickly on a lean diet.</p></div>
+  <div class="qa"><div class="q">"Social situations are stressful."</div><p>Eat before you go, bring your own food matter-of-factly, and use your prepared explanation once — then stop justifying yourself. Long-term practitioners stop apologizing for their diet; that shift alone removes most of the social friction.</p></div>
+  <div class="qa"><div class="q">"I don't know if I'm combining/ordering my food correctly."</div><p>Stop optimizing combining rules and just simplify the meal. Fewer ingredients solves 90% of digestive-comfort questions without needing a chart.</p></div>
+
+  <div class="page-footer"><span>The Fruit-Powered Life</span><span>Part 05 · Troubleshooting</span></div>
+</div>
+
+<!-- APPENDIX -->
+<div class="page">
+  <div class="kicker">Appendices</div>
+  <h2 class="section-title">Reference &amp; Tools</h2>
+  <div class="section-tagline">Sample day, shopping checklist, and FAQ</div>
+
+  <h3>A · Sample Day <span style="font-weight:400;color:#6b6153;font-size:10pt;">(adjust portions to your own calorie needs)</span></h3>
+  <ul>
+    <li><strong>Morning:</strong> Large mono meal — 6&ndash;8 bananas, or a big bowl of mango.</li>
+    <li><strong>Midday:</strong> Melon meal (half a watermelon or cantaloupe) for hydration and volume.</li>
+    <li><strong>Afternoon:</strong> Dates plus a handful of berries, or dried fruit if calorie needs are high.</li>
+    <li><strong>Evening:</strong> Mixed simple meal — e.g., oranges and persimmons, or a large fruit salad kept to 2&ndash;3 fruit types.</li>
+  </ul>
+
+  <h3>B · Shopping &amp; Prep Checklist</h3>
+  <ul class="checklist">
+    <li>Identify a bulk/wholesale or farmers' market source for your staple fruits</li>
+    <li>Buy bananas and other climacteric fruit slightly underripe; ripen at home in batches</li>
+    <li>Freeze overripe bananas and mangoes for smoothies or cold desserts</li>
+    <li>Keep a kitchen scale accessible for the first month</li>
+    <li>Stock 3&ndash;4 "anchor" calorie-dense fruits at all times (bananas, dates, mangoes, dried fruit)</li>
+    <li>Prep a grab-and-go fruit container for busy days</li>
+  </ul>
+
+  <h3>C · FAQ</h3>
+  <div class="qa"><div class="q">Do I need to be 100% fruit to benefit from this?</div><p>No. Every principle here (simplify meals, build sustainable systems, eat enough) helps at any percentage of fruit in your diet.</p></div>
+  <div class="qa"><div class="q">Is this medically endorsed?</div><p>This guide reflects publicly discussed philosophies associated with these practitioners' work; it is educational only. Work with a doctor or registered dietitian for personalized medical guidance, and get regular bloodwork.</p></div>
+  <div class="qa"><div class="q">What if I don't have access to cheap tropical fruit?</div><p>Lean on what's abundant and affordable locally — apples, pears, grapes, citrus, melon in season — and use dried fruit and frozen fruit to fill gaps affordably.</p></div>
+
+  <div class="page-footer"><span>The Fruit-Powered Life</span><span>Appendices</span></div>
+</div>
+
+<!-- BACK COVER -->
+<div class="page backcover">
+  <h2>The Fruit-Powered Life</h2>
+  <p>Three proven philosophies. One practical framework. Everything you need to start, sustain, and troubleshoot a fruit-centered way of eating — without guesswork.</p>
+  <p>🍌 Physiological foundation &nbsp;·&nbsp; 🍊 Real-world sustainability &nbsp;·&nbsp; 🥭 Calorie discipline</p>
+  <div class="disclaimer">This guide is an independent, original synthesis for educational purposes. Not affiliated with or endorsed by Loren Lockman, Tanglewood Wellness Center, Ted Carr, or Shane Sterling. Always consult a qualified healthcare provider before making significant dietary changes.</div>
+</div>
+
+</body>
+</html>
